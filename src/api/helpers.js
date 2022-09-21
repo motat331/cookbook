@@ -16,7 +16,7 @@ async function post(url, data, isPublic = false) {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
-            ...(token ? { Authorization: token } : {}),
+            ...(token ? { Authorization: `Bearer ${token}` } : {}),
         },
         body: JSON.stringify(data),
     });
@@ -34,7 +34,7 @@ async function put(url, data) {
         method: 'PUT',
         headers: {
             'Content-Type': 'application/json',
-            Authorization: token,
+            ...(token ? { Authorization: `Bearer ${token}` } : {}),
         },
         body: JSON.stringify(data),
     });
@@ -57,7 +57,7 @@ const get = async (url, isPublic = false) => {
         method: 'GET',
         headers: {
             'Content-Type': 'application/json',
-            ...(token ? { Authorization: token } : {}),
+            ...(token ? { Authorization: `Bearer ${token}` } : {}),
         },
     });
 
@@ -79,7 +79,7 @@ const del = async (url, data) => {
         method: 'DELETE',
         headers: {
             'Content-Type': 'application/json',
-            Authorization: token,
+            ...(token ? { Authorization: `Bearer ${token}` } : {}),
         },
         body: JSON.stringify(data),
     });
