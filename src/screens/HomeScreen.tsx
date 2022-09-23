@@ -1,31 +1,13 @@
 import React, { useEffect } from 'react';
-import {
-    Text,
-    View,
-    StyleSheet,
-    Image,
-    FlatList,
-    Dimensions,
-} from 'react-native';
-import { useDispatch } from 'react-redux';
+import { Text, View, StyleSheet, Image, FlatList } from 'react-native';
 import Colors from '../constants/Colors';
-import recipesData from '../../dummydata/recipes.json';
+import recipesData from '../../dummydata/recipes';
 import MenuItemThumb from '../components/MenuItemThumb/MenuItemThumb';
-const height = Dimensions.get('window').width / 2 - 30;
 
 const HomeScreen = (props: any) => {
-    const dispatch = useDispatch();
-
     const renderItem = ({ item, index }) => (
-        <MenuItemThumb
-            title={item.name}
-            isEven={(index & 1) == 1 ? false : true}
-        />
+        <MenuItemThumb title={item.name} image={item.image} />
     );
-
-    useEffect(() => {
-        console.log('Recipes: ', recipesData);
-    }, []);
 
     return (
         <View style={styles.screen}>
@@ -43,7 +25,7 @@ const HomeScreen = (props: any) => {
                     />
                 </View>
             </View>
-            <View>
+            <View style={{ flex: 1 }}>
                 <FlatList
                     data={recipesData}
                     renderItem={renderItem}
@@ -51,7 +33,7 @@ const HomeScreen = (props: any) => {
                     numColumns={2}
                     columnWrapperStyle={{
                         justifyContent: 'space-between',
-                        marginTop: 10,
+                        marginTop: 30,
                     }}
                 />
             </View>
