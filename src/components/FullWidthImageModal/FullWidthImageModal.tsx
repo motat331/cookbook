@@ -1,6 +1,13 @@
 import React, { useState } from 'react';
-import { Text, View, Modal, StyleSheet, Image } from 'react-native';
-import { TouchableOpacity } from 'react-native-gesture-handler';
+import {
+    Text,
+    View,
+    Modal,
+    StyleSheet,
+    Image,
+    TouchableWithoutFeedback,
+} from 'react-native';
+import { TouchableOpacity } from 'react-native';
 import GestureRecognizer from 'react-native-swipe-gestures';
 import Colors from '../../constants/Colors';
 
@@ -27,31 +34,44 @@ const FullWidthImageModal = ({
                     setModalVisible(false);
                 }}
             >
-                <View style={styles.centeredView}>
-                    <View style={styles.modalView}>
-                        <Image style={styles.image} source={image} />
+                <TouchableOpacity
+                    style={styles.touchable}
+                    onPress={() => {
+                        setModalVisible(false);
+                    }}
+                    activeOpacity={1}
+                >
+                    <View style={styles.centeredView}>
+                        <View style={styles.modalView}>
+                            <TouchableWithoutFeedback>
+                                <Image style={styles.image} source={image} />
+                            </TouchableWithoutFeedback>
+                        </View>
                     </View>
-                </View>
+                </TouchableOpacity>
             </Modal>
         </GestureRecognizer>
     );
 };
 
 const styles = StyleSheet.create({
+    touchable: {
+        backgroundColor: 'rgba(0,0,0,0.2)',
+        padding: 30,
+        flex: 1,
+    },
     centeredView: {
         flex: 1,
         justifyContent: 'center',
         alignItems: 'center',
         marginTop: 22,
-        backgroundColor: 'red',
     },
     modalView: {
         width: '100%',
         height: '100%',
-        backgroundColor: 'rgba(0,0,0,0.2)',
+        // backgroundColor: 'rgba(0,0,0,0.2)',
+        // padding: 30,
         alignItems: 'center',
-
-        padding: 30,
     },
     image: {
         alignSelf: 'center',

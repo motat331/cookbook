@@ -13,11 +13,19 @@ import FullWidthImageModal from '../FullWidthImageModal/FullWidthImageModal';
 const win = Dimensions.get('window');
 const imageSize = win.width / 2 - 110;
 
-const MenuItemThumb = ({ title, image }: { image: string; title: string }) => {
+const MenuItemThumb = ({
+    title,
+    image,
+    onPress,
+}: {
+    image: string;
+    title: string;
+    onPress: any;
+}) => {
     const [modalVisible, setModalVisible] = useState<boolean>(false);
 
     return (
-        <View style={styles.mainContainer}>
+        <Pressable onPress={onPress} style={styles.mainContainer}>
             <FullWidthImageModal
                 image={image}
                 modalVisible={modalVisible}
@@ -37,7 +45,7 @@ const MenuItemThumb = ({ title, image }: { image: string; title: string }) => {
                     <Text style={styles.metaText}>Easy Lvl</Text>
                 </View>
             </View>
-        </View>
+        </Pressable>
     );
 };
 
@@ -46,13 +54,18 @@ const styles = StyleSheet.create({
         minWidth: '48%',
         maxWidth: '48%',
         height: '100%',
+        // backgroundColor: 'red',
     },
     card: {
         backgroundColor: Colors.background_offset,
+        // backgroundColor: 'yellow',
         padding: 20,
         paddingTop: imageSize / 2 + 20,
         borderRadius: 8,
         flex: 1,
+        height: '100%',
+        // minHeight: '100%',
+        flexGrow: 1,
     },
     metaContainer: {
         flexDirection: 'row',
@@ -85,6 +98,7 @@ const styles = StyleSheet.create({
         textAlign: 'center',
         fontSize: 14,
         fontWeight: 'bold',
+        height: 40,
     },
 });
 

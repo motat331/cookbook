@@ -1,12 +1,25 @@
 import React, { useEffect } from 'react';
-import { Text, View, StyleSheet, Image, FlatList } from 'react-native';
+import {
+    Text,
+    View,
+    StyleSheet,
+    Image,
+    FlatList,
+    Pressable,
+} from 'react-native';
 import Colors from '../constants/Colors';
 import recipesData from '../../dummydata/recipes';
 import MenuItemThumb from '../components/MenuItemThumb/MenuItemThumb';
 
 const HomeScreen = (props: any) => {
     const renderItem = ({ item, index }) => (
-        <MenuItemThumb title={item.name} image={item.image} />
+        <MenuItemThumb
+            title={item.name}
+            image={item.image}
+            onPress={() => {
+                props.navigation.navigate('RecipeScreen');
+            }}
+        />
     );
 
     return (
