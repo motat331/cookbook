@@ -4,7 +4,7 @@ import Colors from "../../constants/Colors";
 
 interface Props {
   setActiveTab: any;
-  activeTab: "ingredients" | "instructions";
+  activeTab: "Ingredients" | "Instructions";
 }
 
 const tabs = ["Ingredients", "Instructions"];
@@ -14,6 +14,7 @@ const Tabber = ({ setActiveTab, activeTab }: Props) => {
     <View style={styles.tabber}>
       {tabs.map((tab) => (
         <Pressable
+          key={tab}
           onPress={() => setActiveTab(tab)}
           style={[
             styles.tabOption,

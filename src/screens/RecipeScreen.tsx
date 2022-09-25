@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import {
   View,
   StyleSheet,
@@ -11,27 +11,43 @@ import Colors from "../constants/Colors";
 import Icon from "react-native-vector-icons/MaterialIcons";
 import MetaDetails from "../components/MetaDetails/MetaDetails";
 import Tabber from "../components/Tabber/Tabber";
+import IngredientsList from "../components/IngredientsList/IngredientsList";
+import Instructions from "../components/Instructions/Instructions";
+import RecipesService from "../api/RecipesService";
+import { Recipe } from "../../dummydata/recipes";
 
 const RecipeScreen = (props: any) => {
-  const [activeTab, setActiveTab] = useState<"ingredients" | "instructions">(
-    "ingredients"
+  const [recipe, setRecipe] = useState<Recipe>(null);
+  useEffect(() => {
+    const recipeId = props.route.params.recipe;
+    const foundRecipe = RecipesService.getRecipeById(recipeId);
+    setRecipe(foundRecipe);
+    console.log("Recipe: ", foundRecipe);
+  }, []);
+
+  const [activeTab, setActiveTab] = useState<"Ingredients" | "Instructions">(
+    "Ingredients"
   );
-  return (
+  return recipe ? (
     <ScrollView style={styles.mainContainer}>
       <View style={styles.featuredImageContainer}>
-        <Image
-          style={styles.featuredImage}
-          source={require("../../assets/images/items/cake.jpg")}
-        />
+        <Image style={styles.featuredImage} source={recipe.image} />
       </View>
       <View style={styles.mainBodyContainer}>
         <View style={styles.bodyTitle}>
-          <Text style={styles.bodyText}>Penne Chicken Carbonara</Text>
+          <Text style={styles.bodyText}>{recipe.name}</Text>
         </View>
         <MetaDetails></MetaDetails>
         <Tabber setActiveTab={setActiveTab} activeTab={activeTab}></Tabber>
+        {activeTab == "Ingredients" ? (
+          <IngredientsList ingredients={recipe.ingredients}></IngredientsList>
+        ) : (
+          <Instructions></Instructions>
+        )}
       </View>
     </ScrollView>
+  ) : (
+    <View></View>
   );
 };
 const styles = StyleSheet.create({
@@ -49,8 +65,9 @@ const styles = StyleSheet.create({
     flex: 1,
     borderTopRightRadius: 30,
     borderTopLeftRadius: 30,
-    height: 1000,
+    // height: 1000,
     paddingHorizontal: 30,
+    paddingBottom: 30,
   },
   featuredImageContainer: {
     marginVertical: 30,
