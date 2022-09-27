@@ -6,6 +6,7 @@ import {
   Image,
   Text,
   ScrollView,
+  Button,
 } from "react-native";
 import Colors from "../constants/Colors";
 import Icon from "react-native-vector-icons/MaterialIcons";
@@ -26,7 +27,7 @@ const RecipeScreen = (props: any) => {
   }, []);
 
   const [activeTab, setActiveTab] = useState<"Ingredients" | "Instructions">(
-    "Ingredients"
+    "Instructions"
   );
   return recipe ? (
     <ScrollView style={styles.mainContainer}>
@@ -39,10 +40,15 @@ const RecipeScreen = (props: any) => {
         </View>
         <MetaDetails></MetaDetails>
         <Tabber setActiveTab={setActiveTab} activeTab={activeTab}></Tabber>
+        {/* <AppButton
+          text={"Login"}
+          onPress={authHandler}
+          activityIndicator={loadingSpinner}
+        /> */}
         {activeTab == "Ingredients" ? (
           <IngredientsList ingredients={recipe.ingredients}></IngredientsList>
         ) : (
-          <Instructions></Instructions>
+          <Instructions instructions={recipe.instructions}></Instructions>
         )}
       </View>
     </ScrollView>

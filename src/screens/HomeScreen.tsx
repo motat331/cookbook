@@ -9,8 +9,11 @@ const HomeScreen = (props: any) => {
   const [recipes, setRecipes] = useState<Recipe[]>([]);
 
   useEffect(() => {
-    const recipesList: Recipe[] = recipesService.getRecipes();
-    setRecipes(recipesList);
+    async function getRecipes() {
+      const recipesList: Recipe[] = await recipesService.getRecipes();
+      setRecipes(recipesList);
+    }
+    getRecipes();
   }, []);
 
   const renderItem = ({ item, index }) => (

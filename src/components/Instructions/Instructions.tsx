@@ -1,11 +1,25 @@
-import React from "react";
-import { View, Text, StyleSheet } from "react-native";
+import React, { useEffect, useState } from "react";
+import { View, Text, StyleSheet, TextInput } from "react-native";
 
-const Instructions = () => {
+interface Props {
+  instructions: string;
+}
+
+const Instructions = ({ instructions }: Props) => {
+  const [copiedInstructions, setCopiedInstructions] = useState<any>("");
+
+  const onChangeText = (text) => {
+    console.log(text);
+    setCopiedInstructions(text);
+  };
+  useEffect(() => {
+    setCopiedInstructions(instructions);
+  }, []);
   return (
     <View style={styles.mainContainer}>
       <Text style={styles.p}>
-        In the skillet melt butter and then fry all filling ingredients for 3-5
+        {copiedInstructions}
+        {/* In the skillet melt butter and then fry all filling ingredients for 3-5
         minutes on medium heat. Cool completely.
         {"\n"}
         {"\n"}
@@ -25,13 +39,24 @@ const Instructions = () => {
         {"\n"}
         Brush tops with remaining egg whites. Carefully prick tops in 2 or 3
         places with fork. Bake for 20-25 minutes or until lighly golden brown.
-        Cool 10 minutes
+        Cool 10 minutes */}
       </Text>
+      <TextInput
+        style={styles.input}
+        onChangeText={onChangeText}
+        value={copiedInstructions}
+        multiline
+      />
     </View>
   );
 };
 
 const styles = StyleSheet.create({
+  input: {
+    borderWidth: 1,
+    borderColor: "white",
+    color: "white",
+  },
   mainContainer: {
     marginTop: 25,
   },

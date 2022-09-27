@@ -11,6 +11,7 @@ export type Recipe = {
   name: string;
   image: ImageSourcePropType;
   ingredients: Ingredient[];
+  instructions: string;
 };
 
 const data: Recipe[] = [
@@ -23,6 +24,7 @@ const data: Recipe[] = [
       { id: "2", name: "Flour", unit: "2 cup" },
       { id: "3", name: "Strawberries", unit: "15" },
     ],
+    instructions: "Test",
   },
   {
     id: "2",
@@ -36,6 +38,7 @@ const data: Recipe[] = [
       { id: "5", name: "Salt", unit: "Pinch of" },
       { id: "6", name: "Pasta", unit: "18oz" },
     ],
+    instructions: "Test",
   },
   {
     id: "3",
@@ -48,6 +51,15 @@ const data: Recipe[] = [
       { id: "4", name: "Egg", unit: "4" },
       { id: "5", name: "Water", unit: "Half a cup" },
     ],
+    instructions: `Fyy
+    Gy
+
+    Young
+    Y6fg
+
+    Fyi
+
+    Th`,
   },
   {
     id: "4",
@@ -60,6 +72,7 @@ const data: Recipe[] = [
       { id: "4", name: "Marinara Sauce", unit: "1 cup" },
       { id: "5", name: "Flour", unit: "1 cup" },
     ],
+    instructions: "Test",
   },
   {
     id: "5",
@@ -69,12 +82,14 @@ const data: Recipe[] = [
       { id: "1", name: "Tomato", unit: "2x" },
       { id: "2", name: "Lettuce", unit: "2x" },
     ],
+    instructions: "Test",
   },
   {
     id: "6",
     name: "Fruit Salad",
     image: require("../assets/images/items/salad1.jpg").toString(),
     ingredients: [{ id: "1", name: "Tomato", unit: "2x" }],
+    instructions: "Test",
   },
 ];
 
