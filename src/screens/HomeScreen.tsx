@@ -21,7 +21,7 @@ const HomeScreen = (props: any) => {
       title={item.name}
       image={item.image}
       onPress={() => {
-        props.navigation.navigate("RecipeScreen", { recipe: item.id });
+        props.navigation.navigate("RecipeScreen", { recipe: item._id });
       }}
     />
   );
@@ -44,7 +44,7 @@ const HomeScreen = (props: any) => {
         <FlatList
           data={recipes}
           renderItem={renderItem}
-          keyExtractor={(item) => item.id}
+          keyExtractor={(item) => item._id}
           numColumns={2}
           columnWrapperStyle={{
             justifyContent: "space-between",
