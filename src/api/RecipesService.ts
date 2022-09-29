@@ -1,12 +1,16 @@
 import recipesData, { Recipe } from "../../dummydata/recipes";
-import { get, post } from "./helpers";
+import { get, post, patch } from "./helpers";
 
-function getRecipes() {
+function getRecipes(): Promise<Recipe[]> {
   return get(`http://localhost:5000/api/recipes`);
 }
 
-function getRecipeById(recipeId: string): Recipe {
-  return recipesData.find((recipe) => recipe.id === recipeId);
+function getRecipeById(recipeId: string): Promise<Recipe> {
+  return get(`http://localhost:5000/api/recipe/${recipeId}`);
+}
+
+function updateRecipeById(recipeId, data): Promise<Recipe> {
+  return patch(`http://localhost:5000/api/recipe/${recipeId}`, data);
 }
 
 function saveRecipe(recipe) {}
@@ -14,4 +18,5 @@ function saveRecipe(recipe) {}
 export default {
   getRecipes,
   getRecipeById,
+  updateRecipeById,
 };

@@ -82,7 +82,7 @@ export const HomeNavigatorScreen = () => {
 
 export const RecipeNavigationScreen = () => {
     return (
-        <ProfileStackNavigator.Navigator>
+        <ProfileStackNavigator.Navigator >
             <ProfileStackNavigator.Screen
                 name="RecipeScreen"
                 component={RecipeScreen}
