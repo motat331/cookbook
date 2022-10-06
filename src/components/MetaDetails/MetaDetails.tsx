@@ -1,8 +1,10 @@
-import React from "react";
-import { View, StyleSheet, Text } from "react-native";
+import React, { useState } from "react";
+import { View, StyleSheet, Text, Modal, Pressable } from "react-native";
 import Icon from "react-native-vector-icons/MaterialIcons";
-
+import DifficultyPicker from "../DifficultyPicker/DifficultyPicker";
+import FloatingModal from "../FloatingModal/FloatingModal";
 const MetaDetails = () => {
+  const [modalVisible, setModalVisible] = useState<boolean>(true);
   return (
     <View style={styles.metaContainer}>
       <View style={styles.metaItem}>
@@ -11,11 +13,16 @@ const MetaDetails = () => {
         <Text style={styles.metaSubText}>Cooking</Text>
       </View>
       <View style={styles.divider}></View>
-      {/* <Text style={[styles.metaText, styles.divider]}>|</Text> */}
       <View style={styles.metaItem}>
         <Icon name={"local-fire-department"} size={30} color={"#A7C38B"} />
         <Text style={styles.metaText}>Easy level</Text>
         <Text style={styles.metaSubText}>Recipe</Text>
+        <FloatingModal
+          modalVisible={modalVisible}
+          setModalVisible={setModalVisible}
+        >
+          <DifficultyPicker />
+        </FloatingModal>
       </View>
     </View>
   );

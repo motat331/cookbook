@@ -1,4 +1,4 @@
-import recipesData, { Recipe } from "../../dummydata/recipes";
+import { Recipe } from "../interfaces/Recipe";
 import { get, post, patch } from "./helpers";
 
 function getRecipes(): Promise<Recipe[]> {
