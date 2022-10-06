@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import {
   Dimensions,
   Image,
@@ -9,7 +9,7 @@ import {
   Pressable,
 } from "react-native";
 import Colors from "../../constants/Colors";
-import FullWidthImageModal from "../FullWidthImageModal/FullWidthImageModal";
+import FloatingModal from "../FloatingModal/FloatingModal";
 const win = Dimensions.get("window");
 const imageSize = win.width / 2 - 110;
 
@@ -26,11 +26,12 @@ const MenuItemThumb = ({
 
   return (
     <Pressable onPress={onPress} style={styles.mainContainer}>
-      <FullWidthImageModal
-        image={image}
+      <FloatingModal
         modalVisible={modalVisible}
         setModalVisible={setModalVisible}
-      ></FullWidthImageModal>
+      >
+        <Image style={styles.image} source={{ uri: image }} />
+      </FloatingModal>
       <Pressable
         style={styles.imageContainer}
         onPress={() => setModalVisible(!modalVisible)}
@@ -55,6 +56,15 @@ const styles = StyleSheet.create({
     maxWidth: "48%",
     height: "100%",
     // backgroundColor: 'red',
+  },
+  image: {
+    alignSelf: "center",
+    zIndex: 3,
+    width: "100%",
+    height: "100%",
+    borderRadius: 20,
+    resizeMode: "cover",
+    flexBasis: "auto",
   },
   card: {
     backgroundColor: Colors.background_offset,

@@ -41,13 +41,13 @@ const RecipeScreen = (props: any) => {
   function updateLocalData(instructions) {
     recipe.instructions = instructions;
     setRecipe(recipe);
-    console.log("Recipe Instructions: ", recipe.instructions);
   }
 
   async function updateRemoteData() {
     try {
       setIsLoading(true);
       await RecipesService.updateRecipeById(recipe._id, recipe);
+      setUpdateMode(false);
       console.log("Success");
     } catch (err) {
       console.log("Error Updating Recipe: ", err);
@@ -103,13 +103,10 @@ const RecipeScreen = (props: any) => {
             style={{
               position: "absolute",
               bottom: 10,
-              // right: "50%",
-              // left: "50%",
             }}
             text={"Update"}
             onPress={() => {
-              console.log("Update: ", updateMode);
-              setUpdateMode(!updateMode);
+              updateRemoteData();
             }}
             activityIndicator={loadingSpinner}
           />

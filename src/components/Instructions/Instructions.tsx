@@ -41,8 +41,11 @@ const Instructions = ({
 const styles = StyleSheet.create({
   input: {
     borderWidth: 1,
-    borderColor: "white",
+    borderColor: "grey",
     color: "white",
+    paddingVertical: 5,
+    paddingHorizontal: 10,
+    borderRadius: 6,
   },
   mainContainer: {
     marginTop: 25,
